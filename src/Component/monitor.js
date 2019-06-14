@@ -71,38 +71,34 @@ class Meter extends Component {
 		return(
 			<Row gutter={24}>
 				
-			    <Col span={4}>
+			    <Col span={3}>
 			      <Statistic title="温度（°C）" valueStyle={{ color: '#cf1322' }} suffix={<Icon type="arrow-up" />} value={30} precision={1}/>
 			    </Col>
-			    <Col span={4}>
+			    <Col span={3}>
 			      <Statistic title="光照（Lx）" valueStyle={{ color: '#000' }} suffix={<Icon type="arrow-right" />} value={112893} precision={0} />
 			    </Col>
-			    <Col span={4}>
+			    <Col span={3}>
 			      <Statistic title="湿度（%）" valueStyle={{ color: '#3f8600' }} suffix={<Icon type="arrow-down" />} value={58.20} precision={2} />
 			    </Col>
-			    <Col span={4}>
+			    <Col span={3}>
 			      <Statistic title="土壤水分（pF）" valueStyle={{ color: '#000' }} suffix={<Icon type="arrow-right" />} value={47} precision={2} />
 			    </Col>
-			    <Col span={4}>
+			    <Col span={3}>
 			      <Statistic title="土壤温度（%）" valueStyle={{ color: '#3f8600' }} suffix={<Icon type="arrow-down" />} value={58} precision={2} />
 			    </Col>
-			    <Col span={4}>
+			    <Col span={3}>
 			      <Statistic title="土壤肥力（g/kg）" valueStyle={{ color: '#cf1322' }} suffix={<Icon type="arrow-up" />} value={192} precision={2} />
 			    </Col>
 			    
-			    <Col span={10} >
-				</Col>
-				<Col span={14} >
-					<Divider>统计信息</Divider>
-			      <Descriptions >
-				    <Descriptions.Item label="更新频率">15分钟
-				    <Divider type="vertical"/>
-				    </Descriptions.Item>
-				    <Descriptions.Item label="数据收集地点">A区A镇A山
-				    <Divider type="vertical"/>
-				    </Descriptions.Item>
-				    <Descriptions.Item label="上次更新时间">2019/01/01 8:00AM</Descriptions.Item>
-				  </Descriptions>
+				<Col span={6} >
+					<Col span={1}>
+					<Divider type="vertical" style={{float:'left', height:100}} ></Divider>
+					</Col>
+					<Col span={20}>
+				      <Descriptions>
+					    <Descriptions.Item label="上次更新时间">2019/01/01 8:00AM</Descriptions.Item>
+					  </Descriptions>
+					</Col>
 			    </Col>
 
 			</Row>

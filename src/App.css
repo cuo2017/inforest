@@ -87,13 +87,15 @@
   text-align: center;
   height: 350px;
   line-height: 50px;
-  background: #ddd;
+  background: #fff;
   overflow: hidden;
 }
 
-.ant-carousel .slick-slide h3 .slick-slide p{
-  color: #333;
+.slick-dots li{
+  border:1px solid #333;
+  background: #ccc;
 }
+
 
 .homebottom{
   float: left;
