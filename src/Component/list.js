@@ -12,10 +12,13 @@ import { Input, Radio,
   Checkbox,
   Progress,
   Row,
-  Col,PageHeader} from 'antd';
+  Col,PageHeader, Dropdown,Menu} from 'antd';
 import '../App.css';
 
+import {Footer} from './home'; 
+
 const { MonthPicker, RangePicker } = DatePicker;
+const {Search} = Input;
 
 class TimeRelatedForm extends React.Component {
   handleSubmit = (e) => {
@@ -107,9 +110,19 @@ const columns = [
     key: 'start',
   },
   {
-    title: '项目负责人',
-    dataIndex: 'resp',
-    key: 'resp',
+    title: '项目种类',
+    dataIndex: 'type',
+    key: 'type',
+  },
+  {
+    title: '项目种类',
+    dataIndex: 'type',
+    key: 'type',
+  },
+  {
+    title: '项目规模',
+    dataIndex: 'size',
+    key: 'size',
   },
   {
     title: '实施单位',
@@ -159,6 +172,8 @@ const data = [
     key: '1',
     name: '一号种植计划',
     start: '2019/01/01',
+    type: '造林',
+    size:'10亩',
     resp: '甲老板',
     comp: '甲公司',
     tags: ['进行中'],
@@ -168,6 +183,8 @@ const data = [
     name: '二号种植计划',
     start: '2019/03/02',
     resp: '乙老板',
+    type: '造林',
+    size:'7亩',
     comp: '乙公司',
     tags: ['已完成'],
   },{
@@ -175,7 +192,99 @@ const data = [
     name: '三号种植计划',
     start: '2019/04/05',
     resp: '丙老板',
+    type: '抚育管护',
+    size:'4亩',
     comp: '丙公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '4',
+    name: '四号种植计划',
+    start: '2019/04/05',
+    resp: '丁老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '丙公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '5',
+    name: '五号种植计划',
+    start: '2019/04/05',
+    resp: '戊老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '戊公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '6',
+    name: '六号种植计划',
+    start: '2019/04/05',
+    resp: '己老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '己公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '7',
+    name: '七号种植计划',
+    start: '2019/04/05',
+    resp: '庚老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '庚公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '8',
+    name: '八号种植计划',
+    start: '2019/04/05',
+    resp: '辛老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '辛公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '9',
+    name: '九号种植计划',
+    start: '2019/04/05',
+    resp: '壬老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '壬公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '10',
+    name: '十号种植计划',
+    start: '2019/04/05',
+    resp: '癸老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '癸公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '11',
+    name: '十一号种植计划',
+    start: '2019/04/05',
+    resp: '子老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '子公司',
+    tags: ['已停止'],
+  },
+  {
+    key: '12',
+    name: '十二号种植计划',
+    start: '2019/04/05',
+    resp: '丑老板',
+    type: '抚育管护',
+    size:'4亩',
+    comp: '丑公司',
     tags: ['已停止'],
   },
 ];
@@ -305,26 +414,86 @@ class MyList extends Component{
 
 			<div className="map" title="项目管理">
         <PageHeader title="项目列表" subTitle="项目编辑管理" />
-				<Card title="高级搜索" className="filter">
-					<WrappedTimeRelatedForm />
-				</Card>
-				<Card title="项目列表" className="list">
-				  <Table dataSource={data} columns={columns} />
+				<div title="项目列表" className="list">
+          <div style={{
+            textAlign:'left'
+          }}>
+            <Button type="link">全部项目(12)</Button>
+            <Button type="link">进行中(1)</Button>
+            <Button type="link">已完结(1)</Button>
+            <Dropdown overlay={<Menu>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  造林
+                </a>
+              </Menu.Item>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  抚育管护
+                </a>
+              </Menu.Item>
+            </Menu>}>
+              <Button type="link">
+                按项目种类排序 <Icon type="down" />
+              </Button>
+            </Dropdown>
+            <Dropdown overlay={<Menu>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  2016
+                </a>
+              </Menu.Item>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  2017
+                </a>
+              </Menu.Item>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  2018
+                </a>
+              </Menu.Item>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  2019
+                </a>
+              </Menu.Item>
+              <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="#">
+                  2020
+                </a>
+              </Menu.Item>
+            </Menu>}>
+              <Button type="link">
+                按年份排序 <Icon type="down" />
+              </Button>
+            </Dropdown>
+            <Button type="primary" onClick={this.showModal} style={{marginLeft:20,float:'right',}}><Icon type="upload" />添加项目</Button>
+            <Search
+              placeholder="input search text"
+              onSearch={value => console.log(value)}
+              style={{float:'right', width: 200 }}
+            />
+            <Modal
+              title="添加项目"
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <ModalForm />
+            </Modal>
+          </div>
+				  <Table style={{marginTop:20}} dataSource={data} columns={columns} />
           <Divider />
-          <Button type="primary" onClick={this.showModal}>添加项目</Button>
-          <Modal
-            title="添加项目"
-            visible={this.state.visible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-          >
-            <ModalForm />
-          </Modal>
-				 </Card>
+          <Footer />
+
+          
+				 </div>
 			</div>
 		);
 	};
 } 
+
 
 
 

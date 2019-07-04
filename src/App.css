@@ -122,19 +122,10 @@
   width: 100%;
 }
 
-.filter{
-  width: 30%;
-  float: left;
-  overflow: hidden;
-}
-.filterform{
-  float:left;
-  padding:0;
-}
+
+
 .list{
-  width: 68%;
-  margin-left: 2%;
-  float: left;
+  width: 100%;
 }
 
 .table-operations {

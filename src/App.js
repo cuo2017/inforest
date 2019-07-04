@@ -56,26 +56,18 @@ class App extends Component{
           </Menu>
           <Menu
             className="menu"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            defaultSelectedKeys={['4']}
+            defaultOpenKeys={['1']}
             mode="inline"
           >
             <div>
               <img src={Heading} style={{width:200, marginBottom:10}}/>
             </div>
-            <SubMenu key="sub1" title={<span><Icon type="home" /><span>系统首页</span></span>}>
-                <Menu.Item key="1"><Link to="/home/">首页管理</Link></Menu.Item>
-                <Menu.Item key="2"><Link to="/map/">森林地图</Link></Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>项目管理</span></span>}>
-              <Menu.Item key="5"><Link to="/list/">项目列表</Link></Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub3" title={<span><Icon type="monitor" /><span>智能监测</span></span>}>
-                <Menu.Item key="7"><Link to="/monitor/">实时监控</Link></Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub4" title={<span><Icon type="usergroup-add" /><span>用户管理</span></span>}>
-              <Menu.Item key="9"><Link to="/user/">用户列表</Link></Menu.Item>
-            </SubMenu>
+              <Menu.Item key="1"><Link to="/home/"><span><Icon type="home" /><span>首页管理</span></span></Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/map/"><span><Icon type="appstore" /><span>森林地图</span></span></Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/list/"><span><Icon type="setting" /><span>项目管理</span></span></Link></Menu.Item>
+              <Menu.Item key="4"><Link to="/monitor/"><span><Icon type="dot-chart" /><span>数据分析</span></span></Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/user/"><span><Icon type="user" /><span>用户列表</span></span></Link></Menu.Item>
             <div style={{paddingLeft:40,paddingRight:40,height:80}}>
               <Divider/>
               <div style={{cursor:'pointer'}}>
