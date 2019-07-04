@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Card, Descriptions, Badge} from 'antd';
+import { Card, Descriptions, Badge, PageHeader} from 'antd';
 import '../App.css';
 
 
@@ -8,7 +8,8 @@ import '../App.css';
 class Userinfo extends Component{
 	render(){
 		return (
-			<Card className="map" title="管理员资料">
+			<div className="map" >
+				<PageHeader title="管理员资料" subTitle="管理员的个人资料" />
 				<Descriptions bordered>
 				    <Descriptions.Item label="管理员名">Admin</Descriptions.Item>
 				    <Descriptions.Item label="管理员手机号">180-1234-9876</Descriptions.Item>
@@ -17,7 +18,7 @@ class Userinfo extends Component{
 				      <Badge status="processing" text="管理权限" />
 				    </Descriptions.Item>
 				  </Descriptions>
-			</Card>
+			</div>
 		);
 	};
 } 

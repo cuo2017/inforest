@@ -13,7 +13,7 @@ import { Card, Table, Button, Divider,Form,
 	  Rate,
 	  Checkbox,
 	  Row,
-	  Col, } from 'antd';
+	  Col,PageHeader } from 'antd';
 import '../App.css';
 
 import {options, onChange} from './list';
@@ -251,7 +251,8 @@ class User extends Component{
 	  };
 	render(){
 		return (
-			<Card className="map" title="用户列表">
+			<div className="map" title="用户列表">
+        <PageHeader title="用户列表" subTitle="实时数据的统计与整理" />
 				<List />
 				<Divider />
 				<Button type="primary" onClick={this.showModal} style={{marginRight:5}}>添加用户</Button>
@@ -264,7 +265,7 @@ class User extends Component{
 		          >
 		            <ModalForm />
 		          </Modal>
-			</Card>
+			</div>
 		);
 	};
 } 

@@ -1,11 +1,15 @@
 @import '~antd/dist/antd.css';
 
+
+
+
+
 .App {
   text-align: center;
   position: absolute;
   width:100%;
   height: 100%;
-  background: #eee !important;
+  background: #fff !important;
 }
 
 .App-logo {
@@ -45,47 +49,61 @@
   position:fixed;
   top:0;
   left:0;
-  height: 50px;
+  height: 40px;
   width:100%;
   padding-left: 5%;
   padding-right: 5%;
   margin-bottom: 10;
-  z-index: 1;
+  z-index: 2;
+  box-shadow: 0px 0px 5px #ccc;
 }
 .logo{
   float:left;
+  font-size: 13px;
+  height: 40px;
+}
+.logo img{
+  margin-bottom: 5px;
 }
 .username{
   float:right;
+  font-size: 13px;
+  height: 40px;
 }
 .menu{
   position:absolute;
-  padding-top: 50px;
-  width:200px;
+  padding-top: 40px;
+  width:250px;
   float:left;
   height: 100%;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+
 }
 
 .container{
   position: absolute;
-  top:50px;
-  left:200px;
-  width:1200px;
-  height: 700px;
-  background: #eee;
-  padding:20px;
+  top:40px;
+  left:0px;
+  width:100%;
+  height: 95%;
+  background: #fff;
+  overflow-x: hidden;
 }
 
 
 /*. Individual Styles.*/
 .map{
-  width:100%;
-  height: 100%;
+  position: relative;
+  left: 270px;
+  width:80%;
+  /*height: 100%;*/
 }
 
 .ant-carousel .slick-slide {
   text-align: center;
-  height: 350px;
+  height: 300px;
   line-height: 50px;
   background: #fff;
   overflow: hidden;
@@ -99,11 +117,9 @@
 
 .homebottom{
   float: left;
+  text-align: left;
   padding-top: 20px;
-  padding-right:5px;
-  padding-left: 5px;
-  width: 25%;
-  height: 180px;
+  width: 100%;
 }
 
 .filter{

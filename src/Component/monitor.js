@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Card, Statistic, Row, Col, Button, Icon, Descriptions, Divider,Carousel } from 'antd';
+import { Card, Statistic, Row, Col, Button, Icon, Descriptions, Divider,Carousel, PageHeader } from 'antd';
 import '../App.css';
 import {
   G2,
@@ -14,7 +14,7 @@ import {
   Guide,
   Shape,
   Facet,
-  Util
+  Util, 
 } from "bizcharts";
 
 function onChange(a, b, c) {
@@ -28,7 +28,8 @@ class Monitor extends Component {
 	render(){
 
 		return (
-			<Card className="map" title="监测图表">
+			<div className="map" title="监测图表">
+				<PageHeader title="实时监控" subTitle="实时数据的统计与整理" />
 				<Meter />
 				<Divider>图表统计</Divider>
 				<Carousel afterChange={onChange}>
@@ -58,7 +59,7 @@ class Monitor extends Component {
 				    </div>
 				</Carousel>
 				
-			</Card>
+			</div>
 		)
 	};
 } 
