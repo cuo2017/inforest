@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import MyMenu from './Component/menu';
-import Map from './Component/map';
+import MyMap from './Component/map';
 import MyList from './Component/list';
 import Monitor from './Component/monitor';
 import User from './Component/user';
@@ -49,6 +49,9 @@ class App extends Component{
                 <Menu.Item key="logo" className="logo">
                     <img src={Logo} width="20" height="20" style={{marginRight:5}}/> 主页
                 </Menu.Item>
+                <Menu.Item key="product" className="logo">
+                    <Icon type="tablet" />产品页
+                </Menu.Item>
                 <SubMenu className="username" title={<span className="submenu-title-wrapper"><Icon type="user" />管理员</span>}>
                     <Menu.Item key="setting:1"><Link to="/userinfo/">用户资料</Link></Menu.Item>
                     <Menu.Item key="setting:2">退出登陆</Menu.Item>
@@ -56,7 +59,7 @@ class App extends Component{
           </Menu>
           <Menu
             className="menu"
-            defaultSelectedKeys={['4']}
+            defaultSelectedKeys={['1']}
             defaultOpenKeys={['1']}
             mode="inline"
           >
@@ -67,7 +70,7 @@ class App extends Component{
               <Menu.Item key="2"><Link to="/map/"><span><Icon type="appstore" /><span>森林地图</span></span></Link></Menu.Item>
               <Menu.Item key="3"><Link to="/list/"><span><Icon type="setting" /><span>项目管理</span></span></Link></Menu.Item>
               <Menu.Item key="4"><Link to="/monitor/"><span><Icon type="dot-chart" /><span>数据分析</span></span></Link></Menu.Item>
-              <Menu.Item key="5"><Link to="/user/"><span><Icon type="user" /><span>用户列表</span></span></Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/user/"><span><Icon type="user" /><span>用户管理</span></span></Link></Menu.Item>
             <div style={{paddingLeft:40,paddingRight:40,height:80}}>
               <Divider/>
               <div style={{cursor:'pointer'}}>
@@ -101,7 +104,7 @@ class App extends Component{
           <div className="container">
             <Route path="/" exact component={Home} />
             <Route path="/home/" exact component={Home} />
-            <Route path="/map/" component={Map} />
+            <Route path="/map/" component={MyMap} />
             <Route path="/list/" component={MyList} />
             <Route path="/monitor/" component={Monitor} />
             <Route path="/user/" component={User} />

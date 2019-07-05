@@ -115,11 +115,6 @@ const columns = [
     key: 'type',
   },
   {
-    title: '项目种类',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
     title: '项目规模',
     dataIndex: 'size',
     key: 'size',
@@ -470,7 +465,7 @@ class MyList extends Component{
             </Dropdown>
             <Button type="primary" onClick={this.showModal} style={{marginLeft:20,float:'right',}}><Icon type="upload" />添加项目</Button>
             <Search
-              placeholder="input search text"
+              placeholder=" 输入项目名称"
               onSearch={value => console.log(value)}
               style={{float:'right', width: 200 }}
             />

@@ -18,6 +18,8 @@ import '../App.css';
 
 import {options, onChange} from './list';
 
+import {Footer} from './home';
+
 const data = [
   {
     key: '1',
@@ -30,7 +32,7 @@ const data = [
   {
     key: '2',
     name: 'Jim Green',
-    number: 4,
+    number: 2,
     address: 'London No. 1 Lake Park',
     phoneNumber: '130-4567-8901',
     company:'丙'
@@ -38,7 +40,7 @@ const data = [
   {
     key: '3',
     name: 'Joe Black',
-    number: 2,
+    number: 3,
     address: 'Sidney No. 1 Lake Park',
     phoneNumber: '130-4567-8901',
     company:'甲'
@@ -46,7 +48,71 @@ const data = [
   {
     key: '4',
     name: 'Jim Red',
-    number: 3,
+    number: 4,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '5',
+    name: 'Jim Red',
+    number: 5,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '6',
+    name: 'Jim Red',
+    number: 6,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '7',
+    name: 'Jim Red',
+    number: 7,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '8',
+    name: 'Jim Red',
+    number: 8,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '9',
+    name: 'Jim Red',
+    number: 9,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '10',
+    name: 'Jim Red',
+    number: 10,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '11',
+    name: 'Jim Red',
+    number: 11,
+    address: 'London No. 2 Lake Park',
+    phoneNumber: '130-4567-8901',
+    company:'甲'
+  },
+  {
+    key: '12',
+    name: 'Jim Red',
+    number: 12,
     address: 'London No. 2 Lake Park',
     phoneNumber: '130-4567-8901',
     company:'甲'
@@ -77,23 +143,31 @@ class List extends React.Component {
     });
   };
 
-  clearFilters = () => {
-    this.setState({ filteredInfo: null });
-  };
-
-  clearAll = () => {
-    this.setState({
-      filteredInfo: null,
-      sortedInfo: null,
-    });
-  };
-
   setNumberSort = () => {
     this.setState({
       sortedInfo: {
         order: 'descend',
         columnKey: 'number',
       },
+    });
+  };
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
     });
   };
 
@@ -141,13 +215,31 @@ class List extends React.Component {
         key: 'company',
         
       },
+      {
+        title:'操作',
+        dataIndex: 'action',
+        render: (text, record) => (
+          <span>
+            <a href="javascript:;">编辑</a>
+            <Divider type="vertical" />
+            <a href="javascript:;" style={{color:'#f5222d'}}>删除</a>
+          </span>
+        )
+      }
     ];
     return (
       <div>
         <div className="table-operations">
-          <Button onClick={this.setNumberSort}>按项目数量排序</Button>
-          <Button onClick={this.clearFilters}>清除过滤</Button>
-          <Button onClick={this.clearAll}>清除过滤与排序</Button>
+          <Button type="link" onClick={this.setNumberSort}>按项目数量排序</Button>
+          <Button type="primary" onClick={this.showModal} style={{float:'right',marginRight:5}}><Icon type="user-add" />添加用户</Button>
+          <Modal
+            title="添加用户"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+          >
+            <ModalForm />
+          </Modal>
         </div>
         <Table rowSelection={rowSelection} columns={columns} dataSource={data} onChange={this.handleChange} />
       </div>
@@ -230,41 +322,14 @@ const ModalForm = Form.create({ name: 'validate_other' })(Demo);
 class User extends Component{
 	state = { visible: false };
 
-	  showModal = () => {
-	    this.setState({
-	      visible: true,
-	    });
-	  };
-
-	  handleOk = e => {
-	    console.log(e);
-	    this.setState({
-	      visible: false,
-	    });
-	  };
-
-	  handleCancel = e => {
-	    console.log(e);
-	    this.setState({
-	      visible: false,
-	    });
-	  };
+	  
 	render(){
 		return (
 			<div className="map" title="用户列表">
         <PageHeader title="用户列表" subTitle="实时数据的统计与整理" />
 				<List />
 				<Divider />
-				<Button type="primary" onClick={this.showModal} style={{marginRight:5}}>添加用户</Button>
-				<Button type="primary" style={{marginRight:5,borderColor:'#f5222d',backgroundColor:'#f5222d'}}>删除用户</Button>
-				<Modal
-		            title="添加用户"
-		            visible={this.state.visible}
-		            onOk={this.handleOk}
-		            onCancel={this.handleCancel}
-		          >
-		            <ModalForm />
-		          </Modal>
+				<Footer />
 			</div>
 		);
 	};
