@@ -166,12 +166,27 @@ app.route('/udData').post(projectController.udData);
 
 
 // curl localhost:7000/getProject
-// curl -l -H "Content-type: application/json" -X POST -d '{"projnum":"1"}' localhost:7000/addProject
+
+// var dataSchema = mongoose.Schema({
+// 	datanum: String,
+// 	date: String,
+// 	temp: String,
+// 	humi: String,
+// 	illu: String,
+// 	soilwater: String,
+// 	soiltemp: String,
+// 	soilfert: String,
+// });
+// curl -l -H "Content-type: application/json" -X POST -d '{"projnum":"1", "name":"天天造林","type":"造林","size":"58亩","location":"成都市龙泉驿区XX镇","funding":"40000000","progress":"0.3","company":"植树万岁","resp":"刘夏原","start":"2019-01-01","description":"该项目为植树万岁公司法人刘夏原全额资助的森林建造工程，项目性质为公益慈善","document":[{"cert_name":"许可证1","cert_url":"#","cert_date":"2019-01-01"},{"cert_name":"许可证2","cert_url":"#","cert_date":"2019-01-07"}],"img":"#"}' localhost:7000/addProject
+// curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1", "username":"刘夏原","location":"美国西雅图","phonenum":"180xxxxyyyy","company":"植树万岁","proj":[{"name":"天天造林","projnum":"1"}]}' localhost:7000/addUser
+// curl -l -H "Content-type: application/json" -X POST -d '{"datanum":"1", "date":"2019-07-01", "temp":"30", "humi":"71", "illu":"12500", "soilwater":"42", "soiltemp":"25","soilfert":"17" }' localhost:7000/addData
 // curl -l -H "Content-typ '{"projnum":"1"}' localhost:7000/rmProject
 
 // curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1"}' localhost:7000/addUser
 // curl -l -H "Content-type: application/json" -X POST -d '{"datanum":"1"}' localhost:7000/addData
 
+// curl localhost:7000/rmAllData
+// curl localhost:7000/rmAllUser
 
 
 
