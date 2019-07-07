@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 
 //项目数据模型
@@ -27,11 +26,12 @@ var projectSchema = mongoose.Schema({
 		description: String,
 	}],
 });
-var project = mongoose.model("project",projectSchema);
+var Project = mongoose.model("project",projectSchema);
 
 
 //用户数据模型
 var userSchema = mongoose.Schema({
+	usernum: String,
 	username: String,
 	location: String,
 	phonenum: String,
@@ -56,4 +56,5 @@ var dataSchema = mongoose.Schema({
 
 
 
-var user = mongoose.model("user",userSchema);
+var User = mongoose.model("user",userSchema);
+var Data = mongoose.model("data",dataSchema);
