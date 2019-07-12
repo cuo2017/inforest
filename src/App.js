@@ -27,16 +27,7 @@ const MenuItemGroup = Menu.ItemGroup;
 
 
 class App extends Component{
-  state = {
-      current: 'mail',
-    }
-
-    handleClick = (e) => {
-      console.log('click ', e);
-      this.setState({
-        current: e.key,
-      });
-    }
+    
   render(){
     return (
       <div className="App">
@@ -44,8 +35,7 @@ class App extends Component{
         <Router>
           <Menu
             className="nav"
-            onClick={this.handleClick}
-            selectedKeys={[this.state.current]}
+            selectedKeys={['logo']}
             mode="horizontal"
             >
                 <Menu.Item key="logo" className="logo">
@@ -105,7 +95,7 @@ class App extends Component{
           </Menu>
           <div className="container">
             <Route path="/" exact component={Home} />
-            <Route path="/home/" exact component={Home} />
+            <Route path="/home/" component={Home} />
             <Route path="/map/" component={MyMap} />
             <Route path="/list/" component={MyList} />
             <Route path="/monitor/" component={Monitor} />

@@ -6,6 +6,13 @@ import * as serviceWorker from './serviceWorker';
 
 // For development
 import Detail from './Component/project_detail';
+
+
+
+
+
+
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // ReactDOM.render(<App />, document.getElementById('root'));

@@ -12,96 +12,133 @@ import img3 from '../Img/news3.jpeg';
 import img4 from '../Img/news4.jpg';
 
 
+// ====== For Redux ====== //
+
+import { createStore } from 'redux';
+import frontApp from '../data/reducers';
+import {updateHome} from '../data/actions';
+
+let store = createStore(frontApp);
+
+// console.log(store.getState());
+// On Watch
+// console.log(store.getState());
+// let unsubscribe = store.subscribe(() =>
+//   console.log(store.getState())
+// );
+
+// store.dispatch(addSize('Learn about actions'));
+
+// unsubscribe();
+
+//=========//
+
+
+
 const { Paragraph} = Typography;
 const { TabPane } = Tabs;
 
 class Basiccolumn extends React.Component {
-  render() {
-    const data = [
-      {
-        date: "2019-06-01",
-        value: 3
-      },
-      {
-        date: "2019-06-02",
-        value: 5
-      },
-      {
-        date: "2019-06-03",
-        value: 6
-      },
-      {
-        date: "2019-06-04",
-        value: 14
-      },
-      {
-        date: "2019-06-05",
-        value: 4
-      },
-      {
-        date: "2019-06-06",
-        value: 3
-      },
-      {
-        date: "2019-06-07",
-        value: 4
-      },
-      {
-        date: "2019-06-08",
-        value: 9
-      },
-      {
-        date: "2019-06-09",
-        value: 3
-      },
-      {
-        date: "2019-06-10",
-        value: 6
-      },
-      {
-        date: "2019-06-10",
-        value: 3
-      },
-      {
-        date: "2019-06-11",
-        value: 1
-      },
-      {
-        date: "2019-06-12",
-        value: 3
-      },
-      {
-        date: "2019-06-13",
-        value: 7
-      },
-      
-    ];
-    const cols = {
-      value: {
-        tickInterval: 1
-      }
-    };
-    return (
-      <div style={{padding:50}}>
-        <Chart height={350} data={data} scale={cols} forceFit>
-          <Axis name="date" />
-          <Axis name="value" />
-          <Tooltip
-            crosshairs={{
-              type: "y"
-            }}
-          />
-          <Geom type="interval" position="date*value" />
-        </Chart>
-      </div>
-    );
-  }
+	constructor(props){
+		super(props);
+	}
+  	render() {
+	    
+	    const cols = {
+	      value: {
+	        tickInterval: 1
+	      }
+	    };
+	    return (
+	      <div style={{padding:50}}>
+	        <Chart height={350} data={this.props.data} scale={cols} forceFit>
+	          <Axis name="date" />
+	          <Axis name="value" />
+	          <Tooltip
+	            crosshairs={{
+	              type: "y"
+	            }}
+	          />
+	          <Geom type="interval" position="date*value" />
+	        </Chart>
+	      </div>
+	    );
+  	}
 }
 
 
 class Home extends Component{
-	render(){
+	state = {};
+	componentDidMount = () => {
+		let data = {
+			totalsize: 172.6,
+			totalsizeincrement: 37.42,
+			project_1: 58,
+			project_1increment: 3,
+			project_2: 23,
+			project_2increment: 6,
+			doneproject: 35,
+			doneprojectincrement: 7,
+			inprogressproject: 11,
+			inprogressprojectincrement: 2,
 
+			temp: 32,
+			illu: 12000,
+			humi: 71.3,
+			soilwater: 47,
+			soiltemp: 25,
+			soilfert: 192,
+
+			userincrement:[
+		      
+		      {
+		        date: "06-05",
+		        value: 4
+		      },
+		      {
+		        date: "06-06",
+		        value: 3
+		      },
+		      {
+		        date: "06-07",
+		        value: 4
+		      },
+		      {
+		        date: "06-08",
+		        value: 9
+		      },
+		      {
+		        date: "06-09",
+		        value: 3
+		      },
+		      {
+		        date: "06-10",
+		        value: 6
+		      },
+		      {
+		        date: "06-10",
+		        value: 3
+		      },
+		      {
+		        date: "06-11",
+		        value: 1
+		      },
+		      {
+		        date: "06-12",
+		        value: 3
+		      },
+		      {
+		        date: "06-13",
+		        value: 7
+		      },
+	        ],
+		};
+
+      	store.dispatch(updateHome(data));
+      	this.setState(store.getState().home[0].data);
+      	// console.log(store.getState().home[0].data.realdata.temp);
+    };
+	render(){
 		return (
 			<div className="map" >
 				<PageHeader title="主版面" subTitle="信息的集合" />
@@ -145,7 +182,7 @@ class Home extends Component{
 					  	<Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>
 				          <Statistic
 				            title="项目总规模"
-				            value={341.7}
+				            value={this.state.totalsize}
 				            precision={2}
 				            valueStyle={{ color: '#108ee9' }}
 				            prefix=""
@@ -153,7 +190,7 @@ class Home extends Component{
 				            style={{marginBottom:10}}
 				          />
 				          <Statistic title="上月增量"
-				            value={17.4}
+				            value={this.state.totalsizeincrement}
 				            precision={2}
 				            valueStyle={{ color: '#00a652' }}
 				            prefix=""
@@ -163,7 +200,7 @@ class Home extends Component{
 				        <Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>
 				          <Statistic
 				            title="造林项目"
-				            value={37}
+				            value={this.state.project_1}
 				            precision={0}
 				            valueStyle={{ color: '#108ee9' }}
 				            prefix=""
@@ -171,7 +208,7 @@ class Home extends Component{
 				            style={{marginBottom:10}}
 				          />
 				          <Statistic title="上月增量"
-				            value={2}
+				            value={this.state.project_1increment}
 				            precision={0}
 				            valueStyle={{ color: '#00a652' }}
 				            prefix=""
@@ -181,7 +218,7 @@ class Home extends Component{
 				        <Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>
 				          <Statistic
 				            title="抚育管护项目"
-				            value={21}
+				            value={this.state.project_2}
 				            precision={0}
 				            valueStyle={{ color: '#108ee9' }}
 				            prefix=""
@@ -189,7 +226,7 @@ class Home extends Component{
 				            style={{marginBottom:10}}
 				          />
 				          <Statistic title="上月增量"
-				            value={4}
+				            value={this.state.project_2increment}
 				            precision={0}
 				            valueStyle={{ color: '#00a652' }}
 				            prefix=""
@@ -199,7 +236,7 @@ class Home extends Component{
 				        <Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>
 				          <Statistic
 				            title="已完结项目"
-				            value={10}
+				            value={this.state.doneproject}
 				            precision={0}
 				            valueStyle={{ color: '#108ee9' }}
 				            prefix=""
@@ -207,7 +244,7 @@ class Home extends Component{
 				            style={{marginBottom:10}}
 				          />
 				          <Statistic title="上月增量"
-				            value={3}
+				            value={this.state.doneprojectincrement}
 				            precision={0}
 				            valueStyle={{ color: '#00a652' }}
 				            prefix=""
@@ -217,7 +254,7 @@ class Home extends Component{
 				        <Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>
 				          <Statistic
 				            title="进行中项目"
-				            value={10}
+				            value={this.state.inprogressproject}
 				            precision={0}
 				            valueStyle={{ color: '#108ee9' }}
 				            prefix=""
@@ -225,7 +262,7 @@ class Home extends Component{
 				            style={{marginBottom:10}}
 				          />
 				          <Statistic title="上月增量"
-				            value={1}
+				            value={this.state.inprogressprojectincrement}
 				            precision={0}
 				            valueStyle={{ color: '#00a652' }}
 				            prefix=""
@@ -245,22 +282,22 @@ class Home extends Component{
 						    ]}
 						  />
 					  	<Card style={{width:'160px',float:'left',marginLeft:20,marginBottom:20}}>
-				        	<Statistic title="温度" valueStyle={{ color: '#cf1322' }} suffix='°C' value={30} precision={1}/>
+				        	<Statistic title="温度" valueStyle={{ color: '#cf1322' }} suffix='°C' value={this.state.temp} precision={1}/>
 				        </Card>
 				        <Card style={{width:'160px',float:'left',marginLeft:20,marginBottom:20}}>
-			      			<Statistic title="光照" valueStyle={{ color: '#000' }} suffix='Lx' value={112893} precision={0} />
+			      			<Statistic title="光照" valueStyle={{ color: '#000' }} suffix='Lx' value={this.state.illu} precision={0} />
 				        </Card>
 				        <Card style={{width:'160px',float:'left',marginLeft:20,marginBottom:20}}>
-			      			<Statistic title="湿度" valueStyle={{ color: '#3f8600' }} suffix='%' value={58.20} precision={2} />
+			      			<Statistic title="湿度" valueStyle={{ color: '#3f8600' }} suffix='%' value={this.state.humi} precision={2} />
 				        </Card>
 				        <Card style={{width:'160px',float:'left',marginLeft:20,marginBottom:20}}>
-			      			<Statistic title="土壤水分" valueStyle={{ color: '#000' }} suffix='pF' value={47} precision={2} />
+			      			<Statistic title="土壤水分" valueStyle={{ color: '#000' }} suffix='pF' value={this.state.soilwater} precision={2} />
 				        </Card>
 				        <Card style={{width:'160px',float:'left',marginLeft:20,marginBottom:20}}>
-			      			<Statistic title="土壤温度" valueStyle={{ color: '#3f8600' }} suffix='%' value={58} precision={2} />
+			      			<Statistic title="土壤温度" valueStyle={{ color: '#3f8600' }} suffix='°C' value={this.state.soiltemp} precision={2} />
 				        </Card>
 				        <Card style={{width:'160px',float:'left',marginLeft:20,marginBottom:20}}>
-			      			<Statistic title="土壤肥力" valueStyle={{ color: '#cf1322' }} suffix='g/kg' value={192} precision={2} />
+			      			<Statistic title="土壤肥力" valueStyle={{ color: '#cf1322' }} suffix='g/kg' value={this.state.soilfert} precision={2} />
 				        </Card>
 				  	</div>
 				  	<Divider />
@@ -269,11 +306,11 @@ class Home extends Component{
 						    title="用户增量数据总览"
 						    extra={[
 						      <p key="1" type="link">
-						        折线图每日中午12:00更新前一日数据，此处展示最近60天数据
+						        折线图每日中午12:00更新前一日数据，此处展示最近10天数据
 						      </p>,
 						    ]}
 						/>
-						<Basiccolumn />
+						<Basiccolumn data={this.state.userincrement}/>
 				  	</div>
 				  	<Divider />
 				  	<Footer />
