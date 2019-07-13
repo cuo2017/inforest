@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Card, Carousel,Typography,PageHeader, Icon, Button, Tag, Tabs, Divider,Statistic, Row, Col } from 'antd';
+import { Card, Carousel,Typography,PageHeader, Icon, Button, Tag, Tabs, Divider,Statistic, Row, Col, Skeleton } from 'antd';
 import '../App.css';
 import {
   G2,Chart,Geom,Axis,Tooltip,Coord,Label,Legend,View,Guide,Shape,Facet,Util, 
@@ -180,21 +180,23 @@ class Home extends Component{
 						    ]}
 						  />
 					  	<Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>
-				          <Statistic
-				            title="项目总规模"
-				            value={this.state.totalsize}
-				            precision={2}
-				            valueStyle={{ color: '#108ee9' }}
-				            prefix=""
-				            suffix="亩"
-				            style={{marginBottom:10}}
-				          />
-				          <Statistic title="上月增量"
-				            value={this.state.totalsizeincrement}
-				            precision={2}
-				            valueStyle={{ color: '#00a652' }}
-				            prefix=""
-				            suffix="亩"
+					  		
+				            <Statistic
+					            title="项目总规模"
+					            value={this.state.totalsize}
+					            precision={2}
+					            valueStyle={{ color: '#108ee9' }}
+					            prefix=""
+					            suffix="亩"
+					            style={{marginBottom:10}}
+					        />
+				            <Statistic 
+				            	title="上月增量"
+					            value={this.state.totalsizeincrement}
+					            precision={2}
+					            valueStyle={{ color: '#00a652' }}
+					            prefix=""
+					            suffix="亩"
 				            />
 				        </Card>
 				        <Card style={{width:'200px',float:'left',marginLeft:20,marginBottom:20}}>

@@ -133,6 +133,7 @@ class List extends React.Component {
   state = {
     filteredInfo: null,
     sortedInfo: null,
+    user:[]
   };
 
   handleChange = (pagination, filters, sorter) => {
@@ -171,6 +172,13 @@ class List extends React.Component {
     });
   };
 
+  componentDidMount = () => {
+    fetch('http://localhost:7000/getUser')
+      .then(response => response.json())
+      .then(data => this.setState({
+        user: data,
+      }));
+  }
   render() {
     let { sortedInfo, filteredInfo } = this.state;
     sortedInfo = sortedInfo || {};
@@ -178,8 +186,8 @@ class List extends React.Component {
     const columns = [
       {
         title: '用户名',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'username',
+        key: 'username',
         filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
         filteredValue: filteredInfo.name || null,
         onFilter: (value, record) => record.name.includes(value),
@@ -188,15 +196,14 @@ class List extends React.Component {
       },
       {
         title: '项目数量',
-        dataIndex: 'number',
-        key: 'number',
-        sorter: (a, b) => a.number - b.number,
-        sortOrder: sortedInfo.columnKey === 'number' && sortedInfo.order,
+        dataIndex:'projnum' ,
+        key: 'projnum',
+        
       },
       {
         title: '地址',
-        dataIndex: 'address',
-        key: 'address',
+        dataIndex: 'location',
+        key: 'location',
         filters: [{ text: 'London', value: 'London' }, { text: 'New York', value: 'New York' }],
         filteredValue: filteredInfo.address || null,
         onFilter: (value, record) => record.address.includes(value),
@@ -205,8 +212,8 @@ class List extends React.Component {
       },
       {
         title: '手机号',
-        dataIndex: 'phoneNumber',
-        key: 'phoneNumber',
+        dataIndex: 'phonenum',
+        key: 'phonenum',
         
       },
       {
@@ -241,11 +248,14 @@ class List extends React.Component {
             <ModalForm />
           </Modal>
         </div>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} onChange={this.handleChange} />
+        <Table rowSelection={rowSelection} columns={columns} dataSource={this.state.user} onChange={this.handleChange} />
       </div>
     );
   }
 }
+
+
+
 
 // ModalForm
 class Demo extends React.Component {

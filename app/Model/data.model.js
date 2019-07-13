@@ -39,7 +39,8 @@ var userSchema = mongoose.Schema({
 	proj: [{
 		name: String,
 		projnum: String,
-	}]
+	}],
+	projnum: String,
 });
 
 //天气数据模型

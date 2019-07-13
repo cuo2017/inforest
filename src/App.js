@@ -41,10 +41,10 @@ class App extends Component{
                 <Menu.Item key="logo" className="logo">
                     <img src={Logo} width="20" height="20" style={{marginRight:5}}/> 主页
                 </Menu.Item>
-                <Menu.Item key="product" className="logo">
+                <Menu.Item disabled key="product" className="logo">
                     <Icon type="tablet" />产品页
                 </Menu.Item>
-                <SubMenu className="username" title={<span className="submenu-title-wrapper"><Icon type="user" />管理员</span>}>
+                <SubMenu disabled className="username" title={<span className="submenu-title-wrapper"><Icon type="user" />管理员</span>}>
                     <Menu.Item key="setting:1"><Link to="/userinfo/">用户资料</Link></Menu.Item>
                     <Menu.Item key="setting:2">退出登陆</Menu.Item>
                 </SubMenu>
@@ -61,7 +61,7 @@ class App extends Component{
               <Menu.Item key="1"><Link to="/home/"><span><Icon type="home" /><span>首页管理</span></span></Link></Menu.Item>
               <Menu.Item key="2"><Link to="/map/"><span><Icon type="appstore" /><span>森林地图</span></span></Link></Menu.Item>
               <Menu.Item key="3"><Link to="/list/"><span><Icon type="setting" /><span>项目管理</span></span></Link></Menu.Item>
-              <Menu.Item key="4"><Link to="/monitor/"><span><Icon type="dot-chart" /><span>数据分析</span></span></Link></Menu.Item>
+              <Menu.Item disabled key="4"><Link to="/monitor/"><span><Icon type="dot-chart" /><span>数据分析</span></span></Link></Menu.Item>
               <Menu.Item key="5"><Link to="/user/"><span><Icon type="user" /><span>用户管理</span></span></Link></Menu.Item>
             <div style={{paddingLeft:40,paddingRight:40,height:80}}>
               <Divider/>

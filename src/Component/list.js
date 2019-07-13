@@ -17,6 +17,18 @@ import '../App.css';
 
 import {Footer} from './home'; 
 
+import $, {jQuery} from 'jquery';
+
+// ====== For Redux ====== //
+
+import { createStore } from 'redux';
+import frontApp from '../data/reducers';
+import {updateHome} from '../data/actions';
+
+let store = createStore(frontApp);
+
+// ============= //
+
 const { MonthPicker, RangePicker } = DatePicker;
 const {Search} = Input;
 
@@ -121,33 +133,36 @@ const columns = [
   },
   {
     title: '实施单位',
-    dataIndex: 'comp',
-    key: 'comp',
+    dataIndex: 'company',
+    key: 'company',
   },
   {
     title: '状态',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: tags => (
-      <span>
-        {tags.map(tag => {
-          if (tag !== '进行中')
+    key: 'progress',
+    dataIndex: 'progress',
+    render: progress => {
+        if (progress === '1')
           {
             return (
-              <Tag color={tag==='已完成'?'green':'volcano'} key={tag} type='line'>
-                {tag}
+              <Tag color={'green'} key={progress} type='line'>
+                已完成
+              </Tag>
+            ); 
+          }
+        else if (progress === '0')
+          {
+            return (
+              <Tag color={'volcano'} key={progress} type='line'>
+                已停止
               </Tag>
             );
           }
           else {
             return (
-              <Progress percent={50} status="active" />
+              <Progress percent={100*progress} status="active" />
             );
           }
-          
-        })}
-      </span>
-    ),
+      },
   },
   {
     title: '操作',
@@ -162,127 +177,6 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    name: '一号种植计划',
-    start: '2019/01/01',
-    type: '造林',
-    size:'10亩',
-    resp: '甲老板',
-    comp: '甲公司',
-    tags: ['进行中'],
-  },
-  {
-    key: '2',
-    name: '二号种植计划',
-    start: '2019/03/02',
-    resp: '乙老板',
-    type: '造林',
-    size:'7亩',
-    comp: '乙公司',
-    tags: ['已完成'],
-  },{
-    key: '3',
-    name: '三号种植计划',
-    start: '2019/04/05',
-    resp: '丙老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '丙公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '4',
-    name: '四号种植计划',
-    start: '2019/04/05',
-    resp: '丁老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '丙公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '5',
-    name: '五号种植计划',
-    start: '2019/04/05',
-    resp: '戊老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '戊公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '6',
-    name: '六号种植计划',
-    start: '2019/04/05',
-    resp: '己老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '己公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '7',
-    name: '七号种植计划',
-    start: '2019/04/05',
-    resp: '庚老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '庚公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '8',
-    name: '八号种植计划',
-    start: '2019/04/05',
-    resp: '辛老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '辛公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '9',
-    name: '九号种植计划',
-    start: '2019/04/05',
-    resp: '壬老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '壬公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '10',
-    name: '十号种植计划',
-    start: '2019/04/05',
-    resp: '癸老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '癸公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '11',
-    name: '十一号种植计划',
-    start: '2019/04/05',
-    resp: '子老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '子公司',
-    tags: ['已停止'],
-  },
-  {
-    key: '12',
-    name: '十二号种植计划',
-    start: '2019/04/05',
-    resp: '丑老板',
-    type: '抚育管护',
-    size:'4亩',
-    comp: '丑公司',
-    tags: ['已停止'],
-  },
-];
 
 
 // Modal Form
@@ -315,7 +209,6 @@ class Demo extends React.Component {
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit} style={{textAlign:'left'}}>
 
-        <Divider>基本信息</Divider>
         <Form.Item label="项目名称" hasFeedback>
             <Input placeholder="请输入项目名称" />
         </Form.Item>
@@ -333,7 +226,7 @@ class Demo extends React.Component {
         <Form.Item
           label="实施地点"
         >
-          <Cascader options={options} onChange={onChange} placeholder="请选择实施地点"/>
+          <Input placeholder="请输入实施地点" />
         </Form.Item>
         <Form.Item
           label="开始日期"
@@ -344,14 +237,6 @@ class Demo extends React.Component {
           {getFieldDecorator('input-number', { initialValue: 0 })(<InputNumber min={0} max={1000000} />)}
           <span className="ant-form-text">元</span>
         </Form.Item>
-        <Form.Item label="资金来源">
-          <Select defaultValue="县" style={{ width: 120 }}>
-            <Option value="县">县</Option>
-            <Option value="市">市</Option>
-            <Option value="省">省</Option>
-            <Option value="中央">中央</Option>
-          </Select>
-        </Form.Item>
         <Form.Item label="项目负责人" hasFeedback>
             <Input placeholder="请输入项目负责人" />
         </Form.Item>
@@ -359,7 +244,6 @@ class Demo extends React.Component {
             <Input placeholder="请输入实施单位" />
         </Form.Item>
 
-        <Divider>相关文档</Divider>
 
         <Form.Item label="两证一签">
           <div className="dropbox">
@@ -373,6 +257,8 @@ class Demo extends React.Component {
           </div>
         </Form.Item>
 
+      
+
       </Form>
     );
   }
@@ -382,7 +268,10 @@ const ModalForm = Form.create({ name: 'validate_other' })(Demo);
 
 
 class MyList extends Component{
-  state = { visible: false };
+  state = { 
+    visible: false,
+    data: [],
+   };
 
   showModal = () => {
     this.setState({
@@ -403,6 +292,146 @@ class MyList extends Component{
       visible: false,
     });
   };
+  componentDidMount = () => {
+    fetch('http://localhost:7000/getProject')
+      .then(response => response.json())
+      .then(data => this.setState({
+        data: data,
+        number: data.length,
+      }));
+
+
+
+    $.ajax({
+        url: 'http://localhost:7000/findProject',
+        type: 'POST',
+        dataType: 'json',
+        data:{
+            type:'造林'
+        },
+        success: data => this.setState({
+          num1: data.length,
+      }),
+    });
+    $.ajax({
+        url: 'http://localhost:7000/findProject',
+        type: 'POST',
+        dataType: 'json',
+        data:{
+            type:'抚育管护'
+        },
+        success: data => this.setState({
+          num2: data.length,
+      }),
+    });
+
+    $.ajax({
+        url: 'http://localhost:7000/findProject',
+        type: 'POST',
+        dataType: 'json',
+        data:{
+            progress:'1'
+        },
+        success: data => this.setState({
+          numdone: data.length,
+      }),
+    });
+
+    $.ajax({
+        url: 'http://localhost:7000/findProject',
+        type: 'POST',
+        dataType: 'json',
+        data:{
+            $nor: [ { progress: '1' }, { progress: '0' } ]  
+        },
+        success: data => this.setState({
+          numprogress: data.length,
+      }),
+    });
+
+      
+  };
+
+  handleDone = (e) => {
+    if(e){
+      $.ajax({
+          url: 'http://localhost:7000/findProject',
+          type: 'POST',
+          dataType: 'json',
+          data:{
+              progress:'1'
+          },
+          success: data => this.setState({
+            data: data,
+        }),
+      });
+    }
+    
+  };
+  handleProgress = (e) => {
+    if(e){
+      $.ajax({
+          url: 'http://localhost:7000/findProject',
+          type: 'POST',
+          dataType: 'json',
+          data:{
+              $nor: [ { progress: '1' }, { progress: '0' } ]  
+          },
+          success: data => this.setState({
+            data: data,
+        }),
+      });
+    }
+    
+  };
+
+  handleAll = (e) => {
+    if(e){
+      $.ajax({
+          url: 'http://localhost:7000/findProject',
+          type: 'POST',
+          dataType: 'json',
+          data:{
+          },
+          success: data => this.setState({
+            data: data,
+        }),
+      });
+    }
+    
+  };
+  handle1 = (e) => {
+    if(e){
+      $.ajax({
+          url: 'http://localhost:7000/findProject',
+          type: 'POST',
+          dataType: 'json',
+          data:{
+            type:'造林'
+          },
+          success: data => this.setState({
+            data: data,
+        }),
+      });
+    }
+    
+  };
+  handle2 = (e) => {
+    if(e){
+      $.ajax({
+          url: 'http://localhost:7000/findProject',
+          type: 'POST',
+          dataType: 'json',
+          data:{
+            type:'抚育管护'
+          },
+          success: data => this.setState({
+            data: data,
+        }),
+      });
+    }
+    
+  };
 
 	render(){
 		return (
@@ -413,26 +442,26 @@ class MyList extends Component{
           <div style={{
             textAlign:'left'
           }}>
-            <Button type="link">全部项目(12)</Button>
-            <Button type="link">进行中(1)</Button>
-            <Button type="link">已完结(1)</Button>
+            <Button type="link" onClick={this.handleAll}>全部项目({this.state.number})</Button>
+            <Button type="link" onClick={this.handleProgress}>进行中({this.state.numprogress})</Button>
+            <Button type="link" onClick={this.handleDone}>已完结({this.state.numdone})</Button>
             <Dropdown overlay={<Menu>
               <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="#">
-                  造林
-                </a>
+                <Button type="link" onClick={this.handle1}>
+                  造林({this.state.num1})
+                </Button>
               </Menu.Item>
               <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="#">
-                  抚育管护
-                </a>
+                <Button type="link" onClick={this.handle2}>
+                  抚育管护({this.state.num2})
+                </Button>
               </Menu.Item>
             </Menu>}>
               <Button type="link">
                 按项目种类排序 <Icon type="down" />
               </Button>
             </Dropdown>
-            <Dropdown overlay={<Menu>
+            <Dropdown disabled overlay={<Menu>
               <Menu.Item>
                 <a target="_blank" rel="noopener noreferrer" href="#">
                   2016
@@ -463,9 +492,10 @@ class MyList extends Component{
                 按年份排序 <Icon type="down" />
               </Button>
             </Dropdown>
-            <Button type="primary" onClick={this.showModal} style={{marginLeft:20,float:'right',}}><Icon type="upload" />添加项目</Button>
+            <Button disabled type="primary" onClick={this.showModal} style={{marginLeft:20,float:'right',}}><Icon type="upload" />添加项目</Button>
             <Search
-              placeholder=" 输入项目名称"
+              disabled
+              placeholder="输入项目名称"
               onSearch={value => console.log(value)}
               style={{float:'right', width: 200 }}
             />
@@ -474,11 +504,13 @@ class MyList extends Component{
               visible={this.state.visible}
               onOk={this.handleOk}
               onCancel={this.handleCancel}
+              okText="添加"
+              cancelText="取消"
             >
               <ModalForm />
             </Modal>
           </div>
-				  <Table style={{marginTop:20}} dataSource={data} columns={columns} />
+				  <Table style={{marginTop:20}} dataSource={this.state.data} columns={columns} />
           <Divider />
           <Footer />
 
