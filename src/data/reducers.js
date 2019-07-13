@@ -12,6 +12,7 @@ function home(state=[],action){
 	}
 }
 
+
 const frontApp = combineReducers({
   home
 });

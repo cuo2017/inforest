@@ -12,7 +12,7 @@ import { Input, Radio,
   Checkbox,
   Progress,
   Row,
-  Col,PageHeader, Dropdown,Menu} from 'antd';
+  Col,PageHeader, Dropdown,Menu,Popconfirm,message} from 'antd';
 import '../App.css';
 
 import {Footer} from './home'; 
@@ -169,9 +169,12 @@ const columns = [
     key: 'action',
     render: (text, record) => (
       <span>
-        <a href="javascript:;">编辑</a>
+        <a disabled href="javascript:;">编辑</a>
         <Divider type="vertical" />
-        <a href="javascript:;" style={{color:'#f5222d'}}>删除</a>
+        
+        <Popconfirm okText="确认" cancelText="取消" okType="danger" title="确认删除这个项目吗?" onConfirm={() => message.loading('删除中..', 1).then(() => message.success('删除成功', 1))}>
+          <a href="javascript:;" style={{color:'#f5222d'}}>删除</a>
+        </Popconfirm>
       </span>
     ),
   },
@@ -510,7 +513,7 @@ class MyList extends Component{
               <ModalForm />
             </Modal>
           </div>
-				  <Table style={{marginTop:20}} dataSource={this.state.data} columns={columns} />
+				  <Table bordered style={{marginTop:20}} dataSource={this.state.data} columns={columns} />
           <Divider />
           <Footer />
 

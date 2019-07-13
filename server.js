@@ -117,6 +117,33 @@ var projectController = {
 			return res.json(User);
 		});
 	},
+	handleUpdate: function(req,res,next){
+		User.find().exec(function(err,docs){
+			for(var i=0;i<docs.length;i++){
+				var username = docs[i].username;
+				Project.find({resp:username}).exec(function(err,docs){
+					var body = {projnum:docs.length};
+					console.log(docs.length);
+					User.update({"username":username},{$set:body},function(){
+						console.log("更新用户成功");
+					});
+				});
+			}
+			User.find().exec(function(err,docs){
+				return res.json(docs);
+			});
+		});
+		// User.find().exec(function(err,docs){
+		// 	console.log("获取最新用户信息成功");
+			
+		// });
+
+		// User.update({"username":"刘夏原"},{$set:{projnum:1}},function(){
+		// 	console.log("更新用户成功");
+		// 	return res.json(User);
+		// });
+
+	},
 
 
 	// Data
@@ -172,6 +199,7 @@ app.route('/addUser').post(projectController.addUser);
 app.route('/rmUser').post(projectController.rmUser);
 app.route('/rmAllUser').get(projectController.rmAllUser);
 app.route('/udUser').post(projectController.udUser);
+app.route('/handleUpdate').get(projectController.handleUpdate);
 
 // Data Routes
 app.route('/getData').get(projectController.getData);
@@ -204,7 +232,8 @@ app.route('/udData').post(projectController.udData);
 
 
 
-// curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1", "username":"刘夏原","location":"美国西雅图","phonenum":"180xxxxyyyy","company":"植树万岁","proj":[{"name":"天天造林","projnum":"1"}]}' localhost:7000/addUser
+// curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1", "username":"刘夏原","location":"美国西雅图","phonenum":"180xxxxyyyy","company":"植树万岁","proj":[{"name":"天天造林","projnum":"1"}],"projnum":"1"}' localhost:7000/addUser
+// curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"2", "username":"蔡雨昊","location":"美国西雅图","phonenum":"182xxxxyyyy","company":"植树无敌","proj":[],"projnum":"0"}' localhost:7000/addUser
 // curl -l -H "Content-type: application/json" -X POST -d '{"datanum":"1", "date":"2019-07-01", "temp":"30", "humi":"71", "illu":"12500", "soilwater":"42", "soiltemp":"25","soilfert":"17" }' localhost:7000/addData
 // curl -l -H "Content-typ '{"projnum":"1"}' localhost:7000/rmProject
 

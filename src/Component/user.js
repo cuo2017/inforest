@@ -13,10 +13,10 @@ import { Card, Table, Button, Divider,Form,
 	  Rate,
 	  Checkbox,
 	  Row,
-	  Col,PageHeader } from 'antd';
+	  Col,PageHeader,message,Popconfirm } from 'antd';
 import '../App.css';
 
-import {options, onChange} from './list';
+import {options, onChange, } from './list';
 
 import {Footer} from './home';
 
@@ -172,6 +172,17 @@ class List extends React.Component {
     });
   };
 
+  handleUpdate = () => {
+    fetch('http://localhost:7000/handleUpdate')
+      .then(response => response.json())
+      .then(data => this.setState({
+        user: data,
+      }));
+      message
+        .loading('更新中..', 1)
+        .then(() => message.success('更新用户信息成功', 1));
+  }
+
   componentDidMount = () => {
     fetch('http://localhost:7000/getUser')
       .then(response => response.json())
@@ -188,27 +199,18 @@ class List extends React.Component {
         title: '用户名',
         dataIndex: 'username',
         key: 'username',
-        filters: [{ text: 'Joe', value: 'Joe' }, { text: 'Jim', value: 'Jim' }],
-        filteredValue: filteredInfo.name || null,
-        onFilter: (value, record) => record.name.includes(value),
-        sorter: (a, b) => a.name.length - b.name.length,
-        sortOrder: sortedInfo.columnKey === 'name' && sortedInfo.order,
       },
       {
         title: '项目数量',
         dataIndex:'projnum' ,
         key: 'projnum',
-        
+        defaultSortOrder: 'descend',
+        sorter: (a,b) => a.projnum - b.projnum
       },
       {
         title: '地址',
         dataIndex: 'location',
         key: 'location',
-        filters: [{ text: 'London', value: 'London' }, { text: 'New York', value: 'New York' }],
-        filteredValue: filteredInfo.address || null,
-        onFilter: (value, record) => record.address.includes(value),
-        sorter: (a, b) => a.address.length - b.address.length,
-        sortOrder: sortedInfo.columnKey === 'address' && sortedInfo.order,
       },
       {
         title: '手机号',
@@ -227,9 +229,11 @@ class List extends React.Component {
         dataIndex: 'action',
         render: (text, record) => (
           <span>
-            <a href="javascript:;">编辑</a>
+            <a disabled href="javascript:;">编辑</a>
             <Divider type="vertical" />
-            <a href="javascript:;" style={{color:'#f5222d'}}>删除</a>
+            <Popconfirm okText="确认" cancelText="取消" okType="danger" title="确认删除这个用户吗?" onConfirm={() => message.loading('删除中..', 1).then(() => message.success('删除成功', 1))}>
+              <a href="javascript:;" style={{color:'#f5222d'}}>删除</a>
+            </Popconfirm>
           </span>
         )
       }
@@ -237,8 +241,10 @@ class List extends React.Component {
     return (
       <div>
         <div className="table-operations">
-          <Button type="link" onClick={this.setNumberSort}>按项目数量排序</Button>
-          <Button type="primary" onClick={this.showModal} style={{float:'right',marginRight:5}}><Icon type="user-add" />添加用户</Button>
+          <Button disabled type="link" onClick={this.setNumberSort}>按项目数量排序</Button>
+          <Button type="primary" onClick={this.handleUpdate} style={{float:'right',marginRight:5}}><Icon type="sync" />更新用户信息</Button>
+          <Button disabled type="danger" onClick={this.showModal} style={{float:'right',marginRight:5}}><Icon type="user-add" />删除用户</Button>
+          <Button disabled type="primary" onClick={this.showModal} style={{float:'right',marginRight:5}}><Icon type="user-add" />添加用户</Button>
           <Modal
             title="添加用户"
             visible={this.state.visible}
@@ -248,7 +254,7 @@ class List extends React.Component {
             <ModalForm />
           </Modal>
         </div>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={this.state.user} onChange={this.handleChange} />
+        <Table bordered rowSelection={rowSelection} columns={columns} dataSource={this.state.user} onChange={this.handleChange} />
       </div>
     );
   }
