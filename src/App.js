@@ -12,7 +12,7 @@ import Userinfo from './Component/userinfo';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import { Menu, Icon, Divider } from 'antd';
+import { Menu, Icon, Divider,Button } from 'antd';
 
 import Logo from './Img/logo.jpg';
 import Heading from './Img/heading.jpg';
@@ -38,11 +38,13 @@ class App extends Component{
             selectedKeys={['logo']}
             mode="horizontal"
             >
-                <Menu.Item key="logo" className="logo">
-                    <img src={Logo} width="20" height="20" style={{marginRight:5}}/> 主页
+                <Menu.Item key="logo" className="logo" onClick={() => window.location.reload()}>
+                    <img src={Logo} width="20" height="20" style={{marginRight:5}}/> 
+                    主页
                 </Menu.Item>
                 <Menu.Item disabled key="product" className="logo">
-                    <Icon type="tablet" />产品页
+                    <Icon type="tablet" />
+                    产品页
                 </Menu.Item>
                 <SubMenu disabled className="username" title={<span className="submenu-title-wrapper"><Icon type="user" />管理员</span>}>
                     <Menu.Item key="setting:1"><Link to="/userinfo/">用户资料</Link></Menu.Item>

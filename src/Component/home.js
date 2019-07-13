@@ -173,8 +173,9 @@ class Home extends Component{
 				  		<PageHeader
 						    title="项目数据总览"
 						    tags={<Tag color="orange">每月更新</Tag>}
+						    subTitle="最近更新日期：2019-01-01"
 						    extra={[
-						      <Button key="1" type="link">
+						      <Button disabled key="1" type="link">
 						        查看更多<Icon type="right" />
 						      </Button>,
 						    ]}
@@ -277,8 +278,9 @@ class Home extends Component{
 				  		<PageHeader
 						    title="实时监测总览"
 						    tags={<Tag color="blue">实时更新</Tag>}
+						    subTitle="最近更新时间：2019-01-01 00:00AM"
 						    extra={[
-						      <Button key="1" type="link">
+						      <Button disabled key="1" type="link">
 						        查看更多<Icon type="right" />
 						      </Button>,
 						    ]}
@@ -306,6 +308,7 @@ class Home extends Component{
 				  	<div  className="homebottom" style={{height:450}}>
 				  		<PageHeader
 						    title="用户增量数据总览"
+						    subTitle="最近更新时间：2019-01-01 12:00PM"
 						    extra={[
 						      <p key="1" type="link">
 						        折线图每日中午12:00更新前一日数据，此处展示最近10天数据
@@ -323,21 +326,28 @@ class Home extends Component{
 } 
 
 
-export const Footer = () => (
-	<div  className="homebottom" style={{height:20,marginBottom:50,marginLeft:20}}>
-  		<Row type="flex" justify="start" style={{textAlign:'center',height:20}}>
-	      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>智慧森林</Button> </Col>
-	      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
-	      <Col style={{textAlign:'center',height:20}} span={2}><Button  size="small" type="link" style={{color:'#999',textAlign:'center'}}>反馈与建议</Button></Col>
-	      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
-	      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>帮助中心</Button></Col>
-	      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
-	      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>权限系统</Button></Col>
-	      <Col span={7}></Col>
-	      <Col style={{textAlign:'center',height:20}} span={6}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}><Icon type="qq" /><Divider type="vertical"/><Icon type="wechat" /><Divider type="vertical"/><Icon type="weibo" /><Divider type="vertical"/><Icon type="mail" />联系我们</Button></Col>
-	    </Row>
-  	</div>
-);
+export class Footer extends Component {
+	handleReload = () => {
+		window.location.reload();
+	}
+	render(){
+		return  (
+			<div  className="homebottom" style={{height:20,marginBottom:50,marginLeft:20}}>
+		  		<Row type="flex" justify="start" style={{textAlign:'center',height:20}}>
+			      <Col style={{textAlign:'center',height:20}} span={2}><Button onClick={this.handleReload} size="small" type="link" style={{color:'#999',textAlign:'center'}}>智慧森林</Button> </Col>
+			      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
+			      <Col style={{textAlign:'center',height:20}} span={2}><Button  size="small" type="link" style={{color:'#999',textAlign:'center'}}>反馈与建议</Button></Col>
+			      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
+			      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>帮助中心</Button></Col>
+			      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
+			      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>权限系统</Button></Col>
+			      <Col span={7}></Col>
+			      <Col style={{textAlign:'center',height:20}} span={6}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}><Icon type="qq" /><Divider type="vertical"/><Icon type="wechat" /><Divider type="vertical"/><Icon type="weibo" /><Divider type="vertical"/><Icon type="mail" />联系我们</Button></Col>
+			    </Row>
+		  	</div>
+		);
+	}
+}
 export default Home;
 
 
