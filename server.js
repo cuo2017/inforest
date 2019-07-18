@@ -234,7 +234,9 @@ app.route('/udData').post(projectController.udData);
 
 // curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1", "username":"刘夏原","location":"美国西雅图","phonenum":"180xxxxyyyy","company":"植树万岁","proj":[{"name":"天天造林","projnum":"1"}],"projnum":"1"}' localhost:7000/addUser
 // curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"2", "username":"蔡雨昊","location":"美国西雅图","phonenum":"182xxxxyyyy","company":"植树无敌","proj":[],"projnum":"0"}' localhost:7000/addUser
+
 // curl -l -H "Content-type: application/json" -X POST -d '{"datanum":"1", "date":"2019-07-01", "temp":"30", "humi":"71", "illu":"12500", "soilwater":"42", "soiltemp":"25","soilfert":"17" }' localhost:7000/addData
+
 // curl -l -H "Content-typ '{"projnum":"1"}' localhost:7000/rmProject
 
 // curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1"}' localhost:7000/addUser
