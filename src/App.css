@@ -105,13 +105,15 @@
   text-align: center;
   height: 300px;
   line-height: 50px;
-  background: #fff;
   overflow: hidden;
 }
 
 .slick-dots li{
-  border:1px solid #333;
-  background: #ccc;
+  /*border:1px solid #333;*/
+  background: #fff;
+}
+.slick-active button{
+  background: #00a652 !important;
 }
 
 

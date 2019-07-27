@@ -92,7 +92,7 @@ class App extends Component{
             </div>
             <div style={{paddingLeft:40,paddingRight:40,height:50,}}>
               <Divider/>
-              <p style={{color:'#999'}}>©2019 智慧森林</p>
+              <p style={{color:'#999'}}>© 2019 Yuhao Cai</p>
             </div>
           </Menu>
           <div className="container">

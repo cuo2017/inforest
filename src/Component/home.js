@@ -341,8 +341,20 @@ export class Footer extends Component {
 			      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>帮助中心</Button></Col>
 			      <Col style={{textAlign:'center',height:20}} span={1}><Divider style={{height:'100%'}} type="vertical"/></Col>
 			      <Col style={{textAlign:'center',height:20}} span={2}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>权限系统</Button></Col>
-			      <Col span={7}></Col>
-			      <Col style={{textAlign:'center',height:20}} span={6}><Button size="small" type="link" style={{color:'#999',textAlign:'center'}}><Icon type="qq" /><Divider type="vertical"/><Icon type="wechat" /><Divider type="vertical"/><Icon type="weibo" /><Divider type="vertical"/><Icon type="mail" />联系我们</Button></Col>
+			      <Col span={4}></Col>
+			      <Col style={{textAlign:'center',height:20}} span={9}>
+			      	<Button size="small" type="link" style={{color:'#999',textAlign:'center'}}>
+			      		<Icon type="qq" />
+			      		<Divider type="vertical"/>
+			      		<Icon type="wechat" />
+			      		<Divider type="vertical"/>
+			      		<Icon type="weibo" />
+			      		<Divider type="vertical"/>
+			      		<Icon type="mail" />联系我们
+			      		<Divider type="vertical"/>
+			      		Copyright © 2019 Yuhao Cai
+		      		</Button>
+	      		  </Col>
 			    </Row>
 		  	</div>
 		);
