@@ -1,26 +1,77 @@
 import React,{Component} from 'react';
-import { Card, Descriptions, Badge, PageHeader} from 'antd';
+import { Steps,Divider,PageHeader, Form, Icon, Input, Button, Checkbox, Card} from 'antd';
 import '../App.css';
 
+const { Step } = Steps;
 
 
-
-class Userinfo extends Component{
+export default class Userinfo extends Component{
 	render(){
 		return (
-			<div className="map" >
-				<PageHeader title="管理员资料" subTitle="管理员的个人资料" />
-				<Descriptions bordered>
-				    <Descriptions.Item label="管理员名">Admin</Descriptions.Item>
-				    <Descriptions.Item label="管理员手机号">180-1234-9876</Descriptions.Item>
-				    <Descriptions.Item label="账号建立时间">2018-04-24 18:00:00</Descriptions.Item>
-				    <Descriptions.Item label="权限" span={3}>
-				      <Badge status="processing" text="管理权限" />
-				    </Descriptions.Item>
-				  </Descriptions>
+			<div className="page">
+				<div style={{marginTop:50}}>
+					<PageHeader title="用户登录" style={{marginBottom:20}}/>
+				    <Card style={{margin:'0 auto',maxWidth:340,padding:20}}>
+				    	<WrappedNormalLoginForm />
+				    </Card>
+				</div>
 			</div>
 		);
 	};
 } 
 
-export default Userinfo;
+
+class NormalLoginForm extends React.Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  };
+
+  render() {
+    const { getFieldDecorator } = this.props.form;
+    return (
+      <Form onSubmit={this.handleSubmit} className="login-form" style={{maxWidth:300,margin:"0 auto",textAlign:'left'}}>
+        <Form.Item>
+          {getFieldDecorator('username', {
+            rules: [{ required: true, message: '请输入用户名' }],
+          })(
+            <Input
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="用户名"
+            />,
+          )}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: '请输入密码' }],
+          })(
+            <Input
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              type="password"
+              placeholder="密码"
+            />,
+          )}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator('remember', {
+            valuePropName: 'checked',
+            initialValue: true,
+          })(<Checkbox>记住我</Checkbox>)}
+          <a className="login-form-forgot" style={{float:'right'}} href="">
+            忘记密码
+          </a>
+          <Button type="primary" htmlType="submit" className="login-form-button" style={{width:'100%'}}>
+            登录
+          </Button>
+          或者 <a href="">注册账号</a>
+        </Form.Item>
+      </Form>
+    );
+  }
+}
+
+const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);

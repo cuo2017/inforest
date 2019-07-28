@@ -4,9 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// For development
-import Detail from './Component/project_detail';
-
 
 
 

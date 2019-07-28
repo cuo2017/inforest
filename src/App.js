@@ -19,6 +19,13 @@ import Heading from './Img/heading.jpg';
 import Appicon from './Img/app-icon.png';
 
 
+// For development
+import Detail from './Component/project_detail';
+
+import Product from './Component/product_display';
+
+
+
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -35,22 +42,52 @@ class App extends Component{
         <Router>
           <Menu
             className="nav"
-            selectedKeys={['logo']}
+            defaultSelectedKeys={['logo']}
             mode="horizontal"
             >
                 <Menu.Item key="logo" className="logo" onClick={() => window.location.reload()}>
+                    <Link to="/">
                     <img src={Logo} width="20" height="20" style={{marginRight:5}}/> 
                     主页
+                    </Link>
                 </Menu.Item>
-                <Menu.Item disabled key="product" className="logo">
-                    <Icon type="tablet" />
-                    产品页
+                <Menu.Item key="product" className="logo">
+                  <Link to="/home">
+                    <Icon type="desktop" />
+                    管理系统
+                  </Link>
                 </Menu.Item>
-                <SubMenu disabled className="username" title={<span className="submenu-title-wrapper"><Icon type="user" />管理员</span>}>
-                    <Menu.Item key="setting:1"><Link to="/userinfo/">用户资料</Link></Menu.Item>
-                    <Menu.Item key="setting:2">退出登陆</Menu.Item>
-                </SubMenu>
+                <Menu.Item disabled key="contact" className="logo">
+                  <Link to="/">
+                    <Icon type="message" />
+                    联系我们
+                  </Link>
+                </Menu.Item>
+                <Menu.Item disabled key="team" className="logo">
+                  <Link to="/">
+                    <Icon type="team" />
+                    关于我们
+                  </Link>
+                </Menu.Item>
+                <Menu.Item className="logo" style={{float:'right'}} key="login"><Link to="/userinfo/"><Icon type="user" />登录</Link></Menu.Item>
           </Menu>
+          <div>
+            <Route path="/" exact component={Product} />
+            <Route path="/home" component={SystemPage} />
+            <Route path="/userinfo/" component={Userinfo} />
+          </div>
+        </Router>
+      </div>
+    );
+  }
+}
+
+
+class SystemPage extends Component {
+  render(){
+    return(
+      <div>
+        <Router>
           <Menu
             className="menu"
             defaultSelectedKeys={['1']}
@@ -61,10 +98,10 @@ class App extends Component{
               <img src={Heading} style={{width:200, marginBottom:10}}/>
             </div>
               <Menu.Item key="1"><Link to="/home/"><span><Icon type="home" /><span>首页管理</span></span></Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/map/"><span><Icon type="appstore" /><span>森林地图</span></span></Link></Menu.Item>
-              <Menu.Item key="3"><Link to="/list/"><span><Icon type="setting" /><span>项目管理</span></span></Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/map/"><span><Icon type="global" /><span>森林地图</span></span></Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/list/"><span><Icon type="deployment-unit" /><span>项目管理</span></span></Link></Menu.Item>
               <Menu.Item disabled key="4"><Link to="/monitor/"><span><Icon type="dot-chart" /><span>数据分析</span></span></Link></Menu.Item>
-              <Menu.Item key="5"><Link to="/user/"><span><Icon type="user" /><span>用户管理</span></span></Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/user/"><span><Icon type="usergroup-add" /><span>用户管理</span></span></Link></Menu.Item>
             <div style={{paddingLeft:40,paddingRight:40,height:80}}>
               <Divider/>
               <div style={{cursor:'pointer'}}>
@@ -96,18 +133,18 @@ class App extends Component{
             </div>
           </Menu>
           <div className="container">
-            <Route path="/" exact component={Home} />
-            <Route path="/home/" component={Home} />
+            <Route path="/home/" component={Home} exact/>
             <Route path="/map/" component={MyMap} />
             <Route path="/list/" component={MyList} />
             <Route path="/monitor/" component={Monitor} />
             <Route path="/user/" component={User} />
-            <Route path="/userinfo/" component={Userinfo} />
           </div>
         </Router>
       </div>
     );
   }
 }
+
+
 
 export default App;

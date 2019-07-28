@@ -45,6 +45,12 @@
 
 
 /*. STYLE  .*/
+
+.page{
+  margin-top:40px;
+  width:100%;
+}
+
 .nav{
   position:fixed;
   top:0;
@@ -138,3 +144,5 @@
 .table-operations > button {
   margin-right: 5px;
 }
+
+
