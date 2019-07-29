@@ -37,7 +37,7 @@ class App extends Component{
     
   render(){
     return (
-      <div className="App">
+      <div height={window.outterHeight} className="App">
         
         <Router>
           <Menu
@@ -45,18 +45,14 @@ class App extends Component{
             defaultSelectedKeys={['logo']}
             mode="horizontal"
             >
-                <Menu.Item key="logo" className="logo" onClick={() => window.location.reload()}>
+                <Menu.Item className="logo" style={{float:'left'}} onClick={() => window.location.reload()}>
                     <Link to="/">
                     <img src={Logo} width="20" height="20" style={{marginRight:5}}/> 
-                    主页
+                    智慧森林
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="product" className="logo">
-                  <Link to="/home">
-                    <Icon type="desktop" />
-                    管理系统
-                  </Link>
-                </Menu.Item>
+
+                <Menu.Item className="logo" key="login"><Link to="/userinfo/"><Icon type="user" />登录</Link></Menu.Item>
                 <Menu.Item disabled key="contact" className="logo">
                   <Link to="/">
                     <Icon type="message" />
@@ -69,7 +65,23 @@ class App extends Component{
                     关于我们
                   </Link>
                 </Menu.Item>
-                <Menu.Item className="logo" style={{float:'right'}} key="login"><Link to="/userinfo/"><Icon type="user" />登录</Link></Menu.Item>
+                
+                <Menu.Item key="product" className="logo">
+                  <Link to="/home">
+                    <Icon type="desktop" />
+                    管理系统
+                  </Link>
+                </Menu.Item>
+
+                <Menu.Item key="logo" className="logo" onClick={() => window.location.reload()}>
+                    <Link to="/">
+                    <Icon type="home" />
+                    主页
+                    </Link>
+                </Menu.Item>
+
+
+                
           </Menu>
           <div>
             <Route path="/" exact component={Product} />

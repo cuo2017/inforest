@@ -142,7 +142,7 @@ class Home extends Component{
 		return (
 			<div className="map" >
 				<PageHeader title="主版面" subTitle="信息的集合" />
-				<Carousel className="carousel" autoplay>
+				<Carousel className="carousel" style={{height:300}} autoplay>
 				    <div style={{position:'absolute'}}>
 				    	<img src={img1} height='100%' width='100%' style={{float:'left'}}/>
 				    	<h3 width='30%' style={{float:'center'}}>龙泉驿森林</h3>
