@@ -2,6 +2,9 @@ import React,{Component} from 'react';
 import { Steps,Divider,PageHeader, Form, Icon, Input, Button, Checkbox, Card} from 'antd';
 import '../App.css';
 
+
+import {PageFooter} from './product_display';
+
 const { Step } = Steps;
 
 
@@ -9,12 +12,13 @@ export default class Userinfo extends Component{
 	render(){
 		return (
 			<div className="page">
-				<div style={{marginTop:50}}>
-					<PageHeader title="用户登录" style={{marginBottom:20}}/>
+				<div style={{paddingTop:50,minHeight:520,marginBottom:50}}>
+					<PageHeader title="用户登录" style={{marginBottom:10}}/>
 				    <Card style={{margin:'0 auto',maxWidth:340,padding:20}}>
 				    	<WrappedNormalLoginForm />
 				    </Card>
 				</div>
+        <PageFooter />
 			</div>
 		);
 	};
