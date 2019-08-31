@@ -190,9 +190,10 @@
   float: left;
 }
 .page2-meta{
-  height: 100px;
+  height: 150px;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 

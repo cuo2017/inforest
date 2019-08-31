@@ -6,10 +6,15 @@ import {
 } from "bizcharts";
 
 
-import img1 from '../Img/news1.png';
-import img2 from '../Img/news2.jpg';
-import img3 from '../Img/news3.jpeg';
-import img4 from '../Img/news4.jpg';
+import img1 from '../Img/official/news1.jpg';
+import img2 from '../Img/official/news2.jpg';
+import img3 from '../Img/official/news3.jpg';
+import img4 from '../Img/official/news4.jpg';
+import img5 from '../Img/official/news5.jpg';
+import img6 from '../Img/official/news6.jpg';
+import img7 from '../Img/official/news7.jpg';
+import img8 from '../Img/official/news8.jpg';
+
 
 
 // ====== For Redux ====== //
@@ -163,6 +168,30 @@ class Home extends Component{
 			    	</div>
 				    <div style={{position:'absolute'}}>
 				    	<img src={img4} height='100%' width='100%' style={{float:'left'}}/>
+				    	<h3 width='30%' style={{float:'center'}}>青龙湖湿地公园</h3>
+				    	<p style={{float:'center',color:'#666',width:'30%',float:'right',wordBreak:'break-all'}}>龙泉驿市民出了家门，就能望山、见水、观田、游林、赏花
+				    	</p>
+			    	</div>
+			    	<div style={{position:'absolute'}}>
+				    	<img src={img5} height='100%' width='100%' style={{float:'left'}}/>
+				    	<h3 width='30%' style={{float:'center'}}>青龙湖湿地公园</h3>
+				    	<p style={{float:'center',color:'#666',width:'30%',float:'right',wordBreak:'break-all'}}>龙泉驿市民出了家门，就能望山、见水、观田、游林、赏花
+				    	</p>
+			    	</div>
+			    	<div style={{position:'absolute'}}>
+				    	<img src={img6} height='100%' width='100%' style={{float:'left'}}/>
+				    	<h3 width='30%' style={{float:'center'}}>青龙湖湿地公园</h3>
+				    	<p style={{float:'center',color:'#666',width:'30%',float:'right',wordBreak:'break-all'}}>龙泉驿市民出了家门，就能望山、见水、观田、游林、赏花
+				    	</p>
+			    	</div>
+			    	<div style={{position:'absolute'}}>
+				    	<img src={img7} height='100%' width='100%' style={{float:'left'}}/>
+				    	<h3 width='30%' style={{float:'center'}}>青龙湖湿地公园</h3>
+				    	<p style={{float:'center',color:'#666',width:'30%',float:'right',wordBreak:'break-all'}}>龙泉驿市民出了家门，就能望山、见水、观田、游林、赏花
+				    	</p>
+			    	</div>
+			    	<div style={{position:'absolute'}}>
+				    	<img src={img8} height='100%' width='100%' style={{float:'left'}}/>
 				    	<h3 width='30%' style={{float:'center'}}>青龙湖湿地公园</h3>
 				    	<p style={{float:'center',color:'#666',width:'30%',float:'right',wordBreak:'break-all'}}>龙泉驿市民出了家门，就能望山、见水、观田、游林、赏花
 				    	</p>

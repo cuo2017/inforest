@@ -17,10 +17,12 @@ const { Title } = Typography;
 export default class Product extends Component {
 	render(){
 		return (
-			<div style={{height:window.innerHeight}}>
-				<Page1 />
-				<Page2 />
-				<PageFooter />
+			<div style={{position:'absolute',width:'100%',top:0,left:0}}>
+				<div style={{height:window.innerHeight}}>
+					<Page1 />
+					<Page2 />
+					<PageFooter />
+				</div>
 			</div>
 		);
 	}
@@ -52,7 +54,7 @@ const Page2 = () => (
 				<Meta
 				className="page2-meta"
 			      title="数据采集"
-			      description="精密的传感器套组在龙泉驿的森林园区，实时采集六维天气数据"
+			      description="精密的环境传感器套件合理布局在项目实施区域内,实时采集并传输土壤、水肥、温度、湿度、光照等一系列林业建设重要数据。"
 			    />
 			    <Button type="link">了解更多</Button>
 			</Card>
@@ -67,7 +69,7 @@ const Page2 = () => (
 				<Meta
 				className="page2-meta"
 			      title="实时监控"
-			      description="远程监控不同项目所属森林范围，在地图上直观为管理员展示"
+			      description="基于GIS技术的绘制的项目实施范围图，全面并精准掌握历年各类项目建设位置与实施范围。"
 			    />
 			    <Button type="link">了解更多</Button>
 			</Card>
@@ -82,7 +84,7 @@ const Page2 = () => (
 				<Meta
 					className="page2-meta"
 			      title="森林溯源"
-			      description="统计并记录各项目历史记录与实时进度"
+			      description="已完成及正在实施中的各类项目的建设详情与实时工序进度记录，统计并分析相关重要信息。"
 			    />
 			    <Button type="link">了解更多</Button>
 			</Card>

@@ -9,6 +9,7 @@ import Monitor from './Component/monitor';
 import User from './Component/user';
 import Home from './Component/home';
 import Userinfo from './Component/userinfo';
+import About from './Component/aboutus';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
@@ -59,8 +60,8 @@ class App extends Component{
                     联系我们
                   </Link>
                 </Menu.Item>
-                <Menu.Item disabled key="team" className="logo">
-                  <Link to="/">
+                <Menu.Item key="team" className="logo">
+                  <Link to="/aboutus">
                     <Icon type="team" />
                     关于我们
                   </Link>
@@ -87,6 +88,7 @@ class App extends Component{
             <Route path="/" exact component={Product} />
             <Route path="/home" component={SystemPage} />
             <Route path="/userinfo/" component={Userinfo} />
+            <Route path="/aboutus/" component={About} />
           </div>
         </Router>
       </div>
