@@ -32,6 +32,7 @@ var Project = mongoose.model("project",projectSchema);
 //用户数据模型
 var userSchema = mongoose.Schema({
 	usernum: String,
+	password: String,
 	username: String,
 	location: String,
 	phonenum: String,

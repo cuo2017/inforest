@@ -53,7 +53,7 @@ class App extends Component{
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item className="logo" key="login"><Link to="/userinfo/"><Icon type="user" />登录</Link></Menu.Item>
+                <Menu.Item className="logo" key="login"><Link to="/userinfo/"><Icon type="login" />登录</Link></Menu.Item>
                 <Menu.Item disabled key="contact" className="logo">
                   <Link to="/">
                     <Icon type="message" />

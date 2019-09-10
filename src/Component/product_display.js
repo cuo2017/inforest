@@ -65,7 +65,7 @@ const Page2 = () => (
 			 	cover={
 			       	<img src={Img2} />
 			       }
-			>
+				>
 				<Meta
 				className="page2-meta"
 			      title="实时监控"
@@ -93,7 +93,7 @@ const Page2 = () => (
 );
 
 export const PageFooter = () => (
-	<div style={{backgroundColor:'#333',width:'100%',marginTop:60, height:0.25*window.innerHeight, paddingTop:30}}>
+	<div style={{backgroundColor:'#333',width:'100%',marginTop:100, height:0.25*window.innerHeight, paddingTop:30}}>
 		<Row type="flex" justify="start" style={{textAlign:'center',height:20}}>
 	      	<Col style={{textAlign:'center'}} span={8}>
 	      		

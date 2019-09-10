@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path  = require ('path');
-
+var cors = require ('cors');
 
 var db = mongoose.connect("mongodb://127.0.0.1:27017/inforest");
 
@@ -16,7 +16,9 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(cors({
+  origin: 'localhost:3000'
+}));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
@@ -117,6 +119,16 @@ var projectController = {
 			return res.json(User);
 		});
 	},
+	validateUser: function(req,res,next){
+		var username = req.body.username;
+		var password = req.body.password;
+		User.find({"username":username}).exec(function(err,docs){
+			
+			return docs[0].password === password?res.json(docs[0]):res.json({"state":"error"});
+			
+			
+		});
+	},
 	handleUpdate: function(req,res,next){
 		User.find().exec(function(err,docs){
 			for(var i=0;i<docs.length;i++){
@@ -200,6 +212,7 @@ app.route('/rmUser').post(projectController.rmUser);
 app.route('/rmAllUser').get(projectController.rmAllUser);
 app.route('/udUser').post(projectController.udUser);
 app.route('/handleUpdate').get(projectController.handleUpdate);
+app.route('/validateUser').post(projectController.validateUser);
 
 // Data Routes
 app.route('/getData').get(projectController.getData);
@@ -233,7 +246,9 @@ app.route('/udData').post(projectController.udData);
 
 
 // curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"1", "username":"刘夏原","location":"美国西雅图","phonenum":"180xxxxyyyy","company":"植树万岁","proj":[{"name":"天天造林","projnum":"1"}],"projnum":"1"}' localhost:7000/addUser
-// curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"2", "username":"蔡雨昊","location":"美国西雅图","phonenum":"182xxxxyyyy","company":"植树无敌","proj":[],"projnum":"0"}' localhost:7000/addUser
+// curl -l -H "Content-type: application/json" -X POST -d '{"usernum":"2", "username":"用户","password":"123456","location":"美国西雅图","phonenum":"182xxxxyyyy","company":"植树无敌","proj":[],"projnum":"0"}' localhost:7000/addUser
+
+// curl -l -H "Content-type: application/json" -X POST -d '{"username":"用户","password":"123456"}' localhost:7000/validateUser
 
 // curl -l -H "Content-type: application/json" -X POST -d '{"datanum":"1", "date":"2019-07-01", "temp":"30", "humi":"71", "illu":"12500", "soilwater":"42", "soiltemp":"25","soilfert":"17" }' localhost:7000/addData
 
