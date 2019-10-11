@@ -30,9 +30,15 @@ import Product from './Component/product_display';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
+/**
+ <Menu.Item disabled key="contact" className="logo">
+                  <Link to="/">
+                    <Icon type="message" />
+                    联系我们
+                  </Link>
+                </Menu.Item>
 
-
-
+**/
 
 class App extends Component{
     
@@ -54,12 +60,7 @@ class App extends Component{
                 </Menu.Item>
 
                 <Menu.Item className="logo" key="login"><Link to="/userinfo/"><Icon type="login" />登录</Link></Menu.Item>
-                <Menu.Item disabled key="contact" className="logo">
-                  <Link to="/">
-                    <Icon type="message" />
-                    联系我们
-                  </Link>
-                </Menu.Item>
+               
                 <Menu.Item key="team" className="logo">
                   <Link to="/aboutus">
                     <Icon type="team" />

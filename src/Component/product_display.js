@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import { Menu,Icon,Typography,Card,PageHeader,Divider,Row,Col,Button} from 'antd';
+import { Menu,Modal,Icon,Typography,Card,PageHeader,Divider,Row,Col,Button} from 'antd';
 import '../App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 import Logo from '../Img/logo.jpg';
@@ -31,7 +32,7 @@ export default class Product extends Component {
 
 
 const Page1 = () => (
-	<div style={{height:'100%'}}>
+	<div style={{height:'100%',overflowY:'hidden'}}>
 		<video style={{position:'absolute',left:0,zIndex:0}} object-fit="fill" width="100%" src={BgVideo} autoPlay loop>您的浏览器不支持视频播放,推荐您下载最新版Chrome浏览器</video>
 		<div style={{zIndex:1, position:'relative',width:'100%',textAlign:'center',paddingTop:150}}>
 			<img width={800} src={Heading} />
@@ -56,7 +57,7 @@ const Page2 = () => (
 			      title="数据采集"
 			      description="精密的环境传感器套件合理布局在项目实施区域内,实时采集并传输土壤、水肥、温度、湿度、光照等一系列林业建设重要数据。"
 			    />
-			    <Button type="link">了解更多</Button>
+			    <Link to="/home"><Button type="link">了解更多</Button></Link>
 			</Card>
 			<Card 
 				className="page2-card"
@@ -71,7 +72,7 @@ const Page2 = () => (
 			      title="实时监控"
 			      description="基于GIS技术的绘制的项目实施范围图，全面并精准掌握历年各类项目建设位置与实施范围。"
 			    />
-			    <Button type="link">了解更多</Button>
+			    <Link to="/home"><Button type="link">了解更多</Button></Link>
 			</Card>
 			<Card 
 				className="page2-card"
@@ -86,29 +87,58 @@ const Page2 = () => (
 			      title="森林溯源"
 			      description="已完成及正在实施中的各类项目的建设详情与实时工序进度记录，统计并分析相关重要信息。"
 			    />
-			    <Button type="link">了解更多</Button>
+			    <Link to="/home"><Button type="link">了解更多</Button></Link>
 			</Card>
 		</div>
 	</div>
 );
 
-export const PageFooter = () => (
+export class PageFooter extends Component {
+	state= {visible: false}
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+  render(){
+  	return(
 	<div style={{backgroundColor:'#333',width:'100%',marginTop:100, height:0.25*window.innerHeight, paddingTop:30}}>
 		<Row type="flex" justify="start" style={{textAlign:'center',height:20}}>
 	      	<Col style={{textAlign:'center'}} span={8}>
 	      		
 	      		<Title level={4} style={{backgroundColor:'#333',color:'#fff'}}>相关资源</Title>
 	      		<div style={{margin:'0 auto',width:100,textAlign:'center'}}>
-		      		<Button size="small" type="link" style={{color:'#ccc',textAlign:'center'}}><Icon type="android" />安卓 App</Button>
-			      	<Button  size="small" type="link" style={{color:'#ccc',textAlign:'center'}}><Icon type="apple" />iOS App</Button>
+		      		<Button size="small" type="link" onClick={this.showModal} style={{color:'#ccc',textAlign:'center'}}><Icon type="android" />安卓 App</Button>
+		      		<Modal
+			          title="安卓APP下载"
+			          visible={this.state.visible}
+			          onOk={this.handleOk}
+			          onCancel={this.handleCancel}
+			          okText="确定"
+			          cancelText="取消"
+			        >
+			        	<img src="#" />
+			        </Modal>
 		      	</div>
 	      	</Col>
 	      	<Col span={8}>
 	      		<Title level={4} style={{backgroundColor:'#333',color:'#fff'}}>网站反馈</Title>
 	      		<div style={{margin:'0 auto',width:100,textAlign:'center'}}>
 		      		<Button size="small" type="link" style={{color:'#ccc',textAlign:'center'}}>智慧森林</Button>
-			      	<Button  size="small" type="link" style={{color:'#ccc',textAlign:'center'}}>反馈建议</Button>
-			      	<Button size="small" type="link" style={{color:'#ccc',textAlign:'center'}}>帮助中心</Button>
 			      	<Button size="small" type="link" style={{color:'#ccc',textAlign:'center'}}>权限系统</Button>
 		      	</div>
 	      	</Col>
@@ -128,5 +158,6 @@ export const PageFooter = () => (
       			</div>
   		  	</Col>
 	    </Row>
-	</div>
-);
+	</div>)
+  }
+};

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Card, Carousel,Typography,PageHeader, Icon, Button, Tag, Tabs, Divider,Statistic, Row, Col, Skeleton } from 'antd';
+import { Modal,Card, Carousel,Typography,PageHeader, Icon, Button, Tag, Tabs, Divider,Statistic, Row, Col, Skeleton } from 'antd';
 import '../App.css';
 import {
   G2,Chart,Geom,Axis,Tooltip,Coord,Label,Legend,View,Guide,Shape,Facet,Util, 
@@ -16,6 +16,7 @@ import img7 from '../Img/official/news7.jpg';
 import img8 from '../Img/official/news8.jpg';
 
 
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 // ====== For Redux ====== //
 
@@ -146,6 +147,15 @@ class Home extends Component{
 	render(){
 		return (
 			<div className="map" >
+				<Modal
+		          title="请先登录账户"
+		          visible={'visible'}
+		          okText="确定"
+		          cancelText="取消"
+		        >
+		          <Link to="/userinfo/">登录<Button shape="circle" icon="login"/></Link>
+
+		        </Modal>
 				<PageHeader title="主版面" subTitle="信息的集合" />
 				<Carousel className="carousel" style={{height:300}} autoplay>
 				    <div style={{position:'absolute'}}>

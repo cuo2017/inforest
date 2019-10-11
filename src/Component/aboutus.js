@@ -5,6 +5,8 @@ import '../App.css';
 
 import {PageFooter} from './product_display';
 
+import AboutUs from '../Img/aboutus.jpg';
+import AboutUs2 from '../Img/aboutus2.jpg';
 
 const P1 = `
 成都星亿年智慧科技有限公司创立于2019年，公司总部位于中国（四川）自由贸易区成都高新区，我们在计算机、互联网及人工智能等领域具有充足的技术储备基础和研发创新能力，并与电子科技大学、四川农业大学等高校保持充分的技术合作。
@@ -16,17 +18,31 @@ const P2 = `
 export default class About extends Component {
 	render(){
 		return(
-			<div style={{marginTop:40, paddingTop:150,width:'100%'}}>
-				<div style={{width:820,margin:'0 auto',height:400}}>
-					<Card title="关于我们" style={{float:'left',width:400,margin:5,height:300}}>
-						<div>
-						{P1}
+			<div className="page">
+				<div style={{height:'1100px'}}>
+					<Card bordered={false} style={{padding:0,float:'left',width:'100%',height:500}}>
+						<div style={{margin:'0 auto',width:'1200px', height:'400px', textAlign:'center'}}>
+							<div style={{float:'left'}}>
+								<img height={500} width={800} src={AboutUs}/>
+							</div>
+							<div style={{float:'right',marginTop: 200,marginLeft:'50'}}>
+								<h3 style={{fontWeight:'bold',color:'#333'}}>关于我们</h3>
+								<p style={{fontWeight:'bold',width:350,textAlign:'left'}}>{P1}</p>
+							</div>
 						</div>
 					</Card>
 
-					<Card title="我们的服务" style={{float:'left',width:400,margin:5,height:300}}>
-						<div>
-						{P2}
+					<Card bordered={false} style={{marginTop:"100px",padding:0,float:'left',width:'100%',height:500}}>
+						<div style={{margin:'0 auto',width:'1200px', height:'400px', textAlign:'center'}}>
+							
+							<div style={{float:'left',marginTop: 200,marginRight:'50'}}>
+								<h3 style={{fontWeight:'bold',color:'#333'}}>我们的服务</h3>
+								<p style={{fontWeight:'bold',width:350,textAlign:'left'}}>{P2}</p>
+							</div>
+							<div style={{float:'right'}}>
+								<img height={500} width={800} src={AboutUs2}/>
+							</div>
+							
 						</div>
 					</Card>
 				</div>
@@ -35,3 +51,4 @@ export default class About extends Component {
 		);
 	}
 }
+

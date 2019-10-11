@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Statistic,Avatar,message, Menu, Dropdown, Typography, Row, Col ,Steps,Divider,PageHeader, Form, Icon, Input, Button, Checkbox, Card, Descriptions, Carousel, Tag, } from 'antd';
+import { Tooltip, Statistic,Avatar,message, Menu, Dropdown, Typography, Row, Col ,Steps,Divider,PageHeader, Form, Icon, Input, Button, Checkbox, Card, Descriptions, Carousel, Tag, } from 'antd';
 import '../App.css';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -90,7 +90,7 @@ class UserContainer extends Component {
             <Divider />
             <PageHeader title="基本信息" />
             <div>
-             <Row type="flex" justify="center" align="top">
+             <Row type="flex" justiy="center" align="top">
               <Col span={4}>
                 <Statistic title="地址" value={112893} />
               </Col>
@@ -119,15 +119,28 @@ class UserContainer extends Component {
 const steps = [
   {
     title: '用户名',
-    content: 'First-content',
+    name: 'username',
+    placeholder: '请输入您想要创建的用户名',
+    tooltip: '用户名是账号登录过程必要的部分，请记住您的用户名',
+    icon:'user',
+    type:'text'
   },
   {
     title: '密码',
-    content: 'Second-content',
+    name: 'password',
+    placeholder: '请输入您想要使用的登录密码',
+    tooltip: '密码如若忘记，可联系管理员获取该密码',
+    icon:'lock',
+    type:'password'
+
   },
   {
     title: '手机号',
-    content: 'Last-content',
+    name: 'username',
+    placeholder: '请输入您账号需要绑定的手机号',
+    tooltip: '手机号用作您账号的联系方式，也是您找回密码的重要步骤',
+    icon:'mobile',
+    type:'number'
   },
 ];
 
@@ -160,8 +173,20 @@ class Register extends Component {
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className="steps-content">{steps[current].content}</div>
-        <div className="steps-action" style={{textAlign:'center'}}>
+        <div className="steps-content register-unit">
+          <Input
+            type={steps[current].type}
+            name={steps[current].name}
+            placeholder={steps[current].placeholder}
+            prefix={<Icon type={steps[current].icon} style={{ color: 'rgba(0,0,0,.25)' }} />}
+            suffix={
+              <Tooltip title={steps[current].tooltip}>
+                <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+              </Tooltip>
+            }
+          />
+        </div>
+        <div className="steps-action " style={{textAlign:'center'}}>
           {current < steps.length - 1 && (
             <Button type="primary" onClick={() => this.next()}>
               下一步
@@ -169,7 +194,7 @@ class Register extends Component {
           )}
           {current === steps.length - 1 && (
             <Link to="/userinfo/user-page">
-            <Button type="primary" onClick={() => message.success('注册完成')}>
+            <Button type="primary" onClick={() => setTimeout(message.loading('正在登录中...', 0), 2500) }>
               完成注册
             </Button>
             </Link>
@@ -210,19 +235,21 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log(values.username);
-        $.ajax({
-          url: 'http://localhost:7000/validateUser',
-          type: 'POST',
-          dataType: 'json',
-          data:{
-              username:values.username,
-              password:values.password
-          },
-          success: data => this.setState({
-            data:data,
-          }),
-          crossDomain: true,
-        });
+        // $.ajax({
+        //   url: 'http://localhost:7000/validateUser',
+        //   type: 'POST',
+        //   dataType: 'json',
+        //   data:{
+        //       username:values.username,
+        //       password:values.password
+        //   },
+        //   success: data => this.setState({
+        //     data:data,
+        //   }),
+        //   crossDomain: true,
+        // });
+        setTimeout(message.loading('正在登录中...', 0), 2500);
+        
       }
     });
 
@@ -261,12 +288,10 @@ class NormalLoginForm extends React.Component {
           <a className="login-form-forgot" style={{float:'right'}} href="">
             忘记密码
           </a>
-          <Link to="/userinfo/user-page">
           <Button type="primary" htmlType="submit" className="login-form-button" style={{width:'100%'}}>
             登录
           </Button>
-          </Link>
-          或者 <Link to="/userinfo/register"><a href="">创建账号</a></Link>
+          或者 <a href="">创建账号</a>
         </Form.Item>
       </Form>
     );
